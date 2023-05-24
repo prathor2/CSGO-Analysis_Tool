@@ -1,1 +1,1 @@
-# Intern-Assesment-EG
+# CounterStrike Game State Analysis
