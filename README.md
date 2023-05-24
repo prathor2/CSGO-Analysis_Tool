@@ -11,7 +11,8 @@ We have designed a Python class, ProcessGameState, to address our objectives. Th
 Handles file ingestion and Extract, Transform, Load (ETL) of the data.
 Determines whether each row (representing a player's game state per frame) falls within a provided boundary.
 Extracts the weapon classes from the inventory JSON column.
-Design Considerations
+
+## Design Considerations
 We wanted the solution to be as efficient as possible in terms of runtime and to minimize dependencies outside of standard Python libraries. The only third-party libraries used are pandas for data manipulation and shapely for geometric operations.
 
 ## Methodology
