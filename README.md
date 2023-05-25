@@ -30,4 +30,9 @@ Calculate the average timer that Team2 on the Terrorist side enters “BombsiteB
 Create a heatmap showing where you suspect Team2 to be waiting inside “BombsiteB” on the Counter-Terrorist side.
 The code can also be adapted to analyze different games, players, teams, or boundary conditions as needed.
 
-To make this tool accessible to non-technical users, we recommend wrapping it in a simple web-based interface, which will allow users to input parameters and view results via a user-friendly GUI.
+To address the challenge of enabling non-technical stakeholders, such as the CS:GO coaching staff, to access and utilize the tool without requiring them to run code, we propose the implementation of a user-friendly web-based interface. This solution would empower the coaching staff to easily request and acquire the desired output themselves, enhancing their ability to analyze and strategize effectively.
+The web-based interface would provide a simple and intuitive graphical user interface (GUI) where the coaching staff can input the necessary parameters and view the results in a visually appealing manner. By abstracting the underlying code and complexities, the interface allows users to interact with the tool seamlessly, without the need for technical knowledge or coding skills.
+
+This solution can be implemented within a timeframe of less than one week. Leveraging modern web development frameworks and libraries, such as Flask, Django, or Streamlit, it is possible to rapidly create an interactive interface that connects to the existing codebase and presents the required functionalities to the coaching staff. Additionally, deploying the web application on a hosting platform, such as Heroku or AWS, ensures accessibility from any device with an internet connection.
+
+By adopting this approach, the coaching staff can conveniently input their queries, select the desired parameters, and receive the output in a user-friendly format. This empowers them to make informed decisions and derive valuable insights from the CounterStrike data without relying on technical personnel for assistance, thereby streamlining their workflow and enhancing productivity.
