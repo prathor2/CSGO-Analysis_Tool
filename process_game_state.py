@@ -17,13 +17,15 @@ class ProcessGameState:
         self.filter_rows_in_boundary()
         self.extract_weapon_classes()
 
-    def filter_rows_in_boundary(self):
+   def filter_rows_in_boundary(self):
         """
         Assign True or False to each row depending on whether the point is within the boundary and Z-Axis Bounds
         """
         xy_coords = list(zip(self.data['x'], self.data['y']))
-        self.data['in_boundary'] = [self.polygon.contains(Point(point)) for point in xy_coords] & (self.data['Z'] >= 285) & (self.data['Z'] <= 421)
-
+        self.data['in_boundary'] = np.logical_and(
+            np.array([self.polygon.contains(Point(point)) for point in xy_coords]),
+            np.logical_and(self.data['Z'] >= 285, self.data['Z'] <= 421)
+        )
     def extract_weapon_classes(self):
         """
         Extracts weapon classes from the inventory column and adds it as a new column
@@ -64,12 +66,13 @@ class ProcessGameState:
         :param weapon_types: The types of weapons to consider
         """
         team_data = self.data[(self.data['team'] == team) & (self.data['side'] == side)]
-        team_data['weapon_count'] = team_data['weapon_classes'].apply(lambda x: sum([weapon in x for weapon in weapon_types]))
+        team_data = team_data.assign(weapon_count=team_data['weapon_classes'].apply(lambda x: sum([weapon in x for weapon in weapon_types])))
         filtered_data = team_data[team_data['weapon_count'] >= min_weapons]
         if filtered_data.empty:
             return "No data available for the given conditions"
 
         return filtered_data['seconds'].mean()
+
 
     def heatmap_coordinates(self, team, side):
         """
