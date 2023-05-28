@@ -1,7 +1,5 @@
 import pandas as pd
-import json
-import matplotlib.pyplot as plt
-import seaborn as sns
+import numpy as np
 from shapely.geometry import Polygon, Point
 
 class ProcessGameState:
@@ -17,16 +15,16 @@ class ProcessGameState:
         self.filter_rows_in_boundary()
         self.extract_weapon_classes()
 
-   def filter_rows_in_boundary(self):
+    def filter_rows_in_boundary(self):
         """
         Assign True or False to each row depending on whether the point is within the boundary and Z-Axis Bounds
         """
         xy_coords = list(zip(self.data['x'], self.data['y']))
         self.data['in_boundary'] = np.logical_and(
             np.array([self.polygon.contains(Point(point)) for point in xy_coords]),
-            np.logical_and(self.data['Z'] >= 285, self.data['Z'] <= 421)
+            np.logical_and(self.data['z'] >= 285, self.data['z'] <= 421) 
         )
-    def extract_weapon_classes(self):
+    def extract_weapon_classes(self): 
         """
         Extracts weapon classes from the inventory column and adds it as a new column
         Raises ValueError if the 'inventory' column is not in the DataFrame
@@ -34,15 +32,16 @@ class ProcessGameState:
         if 'inventory' not in self.data.columns:
             raise ValueError("Missing 'inventory' column in DataFrame")
 
-        def extract_classes(inventory_json):
+        def extract_classes(inventory_list): 
             """
-            Helper function to extract classes from inventory json
+            Helper function to extract classes from inventory list of dictionaries
             """
-            try:
-                return [item['class'] for item in json.loads(inventory_json).values()]
-            except (json.JSONDecodeError, KeyError):
+            if inventory_list is None:
                 return []
-
+            try:
+                return [item['class'] for item in inventory_list]
+            except KeyError:
+                return []
         self.data['weapon_classes'] = self.data['inventory'].apply(extract_classes)
 
     def team_strategy(self, team, side):
