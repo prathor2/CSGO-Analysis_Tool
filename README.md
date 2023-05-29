@@ -1,38 +1,47 @@
 # CounterStrike Game State Analysis
-
-## Welcome to the CounterStrike Game State Analysis project! This project provides a Python class, ProcessGameState, that is capable of processing and analyzing CounterStrike game state data stored in a Parquet file.
+## Welcome to the CounterStrike Game State Analysis project!
+This project provides a Python class, ProcessGameState, that is capable of processing and analyzing CounterStrike game state data stored in a Parquet file. With a few lines of code, we can extract meaningful insights into player strategies, helping our coaching staff to optimize their approach to the game.
 
 ## Background and Objective
-Our objective is to provide actionable insights to our CounterStrike coaching staff regarding player strategies and behaviors in relation to a specific chokepoint or area of interest on the game map. We have developed a solution that is flexible, easy-to-use, and efficient, capable of handling similar requests for different sets of coordinates and games.
+Our objective is to provide actionable insights to our CounterStrike coaching staff regarding player strategies and behaviors in relation to specific areas of interest on the game map. We designed a solution that is flexible, easy-to-use, and efficient, capable of handling similar requests for different sets of coordinates and games.
 
 ## Solution Overview
-### We have designed a Python class, ProcessGameState, to address our objectives. This class:
-Handles file ingestion and Extract, Transform, Load (ETL) of the data.
+### The Python class, ProcessGameState, serves as the main component of our solution. This class:
+
+Handles file ingestion and performs Extract, Transform, Load (ETL) operations on the data.
 Determines whether each row (representing a player's game state per frame) falls within a provided boundary.
 Extracts the weapon classes from the inventory JSON column.
-
-## Design Considerations
-We wanted the solution to be as efficient as possible in terms of runtime and to minimize dependencies outside of standard Python libraries. The only third-party libraries used are pandas for data manipulation, seaborn and matplotlib for data visualization, and shapely for geometric operations.
+Design Considerations
+We aimed to design a solution with optimal runtime efficiency and minimal dependencies on non-standard Python libraries. We used pandas for data manipulation, seaborn and matplotlib for data visualization, and shapely for geometric operations.
 
 ## Methodology
-We utilized the data of player positions, weapon inventory, and other game state data to extract meaningful insights. Polygon-based geometric analysis was performed to determine if a player's position is within a specified boundary. We used this to analyze the strategy of the opponent team in terms of their movement and weapon choices.
+We used the game data, including player positions, weapon inventory, and other state data, to gain insights into players' strategies. Using polygon-based geometric analysis, we determined whether a player's position is within a specified boundary. We then analyzed the strategy of the opponent team based on their movement patterns and weapon choices.
 
-## Usage
+# Usage and Results
+To use this solution:
 
 Clone this repository to your local machine.
 Navigate to the repository's directory.
 Run the analyze_data.py script to start the analysis.
+This script will:
 
-This will:
+## Analyze whether entering via the specified boundary is a common strategy for Team2 on the Terrorist side.
 
-Analyze whether entering via the specified boundary is a common strategy for Team2 on the Terrorist side.
-Calculate the average timer that Team2 on the Terrorist side enters “BombsiteB” with at least 2 rifles or SMGs.
-Create a heatmap showing where you suspect Team2 to be waiting inside “BombsiteB” on the Counter-Terrorist side.
-The code can also be adapted to analyze different games, players, teams, or boundary conditions as needed.
+From our analysis, entering via the boundary is not a common strategy for Team2 on the Terrorist side.
 
-To address the challenge of enabling non-technical stakeholders, such as the CS:GO coaching staff, to access and utilize the tool without requiring them to run code, we propose the implementation of a user-friendly web-based interface. This solution would empower the coaching staff to easily request and acquire the desired output themselves, enhancing their ability to analyze and strategize effectively.
-The web-based interface would provide a simple and intuitive graphical user interface (GUI) where the coaching staff can input the necessary parameters and view the results in a visually appealing manner. By abstracting the underlying code and complexities, the interface allows users to interact with the tool seamlessly, without the need for technical knowledge or coding skills.
+## Calculate the average timer that Team2 on the Terrorist side enters “BombsiteB” with at least 2 rifles or SMGs.
 
-This solution can be implemented within a timeframe of less than one week. Leveraging modern web development frameworks and libraries, such as Flask, Django, or Streamlit, it is possible to rapidly create an interactive interface that connects to the existing codebase and presents the required functionalities to the coaching staff. Additionally, deploying the web application on a hosting platform, such as Heroku or AWS, ensures accessibility from any device with an internet connection.
+Our results show that there is no data available for this condition.
 
-By adopting this approach, the coaching staff can conveniently input their queries, select the desired parameters, and receive the output in a user-friendly format. This empowers them to make informed decisions and derive valuable insights from the CounterStrike data without relying on technical personnel for assistance, thereby streamlining their workflow and enhancing productivity.
+## Create a heatmap showing where you suspect Team2 to be waiting inside “BombsiteB” on the Counter-Terrorist side.
+
+The generated heatmap shows a dark blue spot at x (356.3) and y (-1763.3,-1715.2), indicating the location where Team2 is most likely waiting.
+
+This code can be adapted to analyze different games, players, teams, or boundary conditions as needed.
+
+## Proposed Solution for Non-Tech Stakeholders
+We understand that non-technical stakeholders, such as our CS:GO coaching staff, may find it challenging to run the code. To make this solution more accessible, we propose developing a user-friendly web-based interface. This interface would allow our coaching staff to easily upload the game state data and specify the boundary coordinates.
+
+After processing the data, the interface would present the findings in an easy-to-understand format. This includes a statement of whether entering via the boundary is a common strategy, the average timer for entering a location with specified weapons, and a heatmap indicating suspected player positions.
+
+We estimate that this interface could be developed in less than one week, utilizing modern web development frameworks like Flask or Django for the back-end, and Bootstrap or React for the front-end. This solution would empower our coaching staff to gain insights from the game state data directly, enhancing their ability to make informed decisions and strategic plans.
