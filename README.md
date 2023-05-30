@@ -49,4 +49,4 @@ I understand that non-technical stakeholders, such as our CS:GO coaching staff, 
 
 After processing the data, the interface would present the findings in an easy-to-understand format. This includes a statement of whether entering via the boundary is a common strategy, the average timer for entering a location with specified weapons, and a heatmap indicating suspected player positions.
 
-We estimate that this interface could be developed in less than one week, utilizing modern web development frameworks like Flask or Django for the back-end, and Bootstrap or React for the front-end. This solution would empower our coaching staff to gain insights from the game state data directly, enhancing their ability to make informed decisions and strategic plans.
+I estimate that this interface could be developed in less than one week, utilizing modern web development frameworks like Flask or Django for the back-end, and Bootstrap or React for the front-end. This solution would empower our coaching staff to gain insights from the game state data directly, enhancing their ability to make informed decisions and strategic plans.
