@@ -35,7 +35,7 @@ According to my analysis, the average time taken for Team2, when playing on the 
 
 ## Create a heatmap showing where you suspect Team2 to be waiting inside “BombsiteB” on the Counter-Terrorist side.
 
-The generated heatmap shows a dark blue spot at x (356.3) and y (-1763.3,-1715.2), indicating the location where Team2 is most likely waiting.
+The generated heatmap shows a dark blue spot at x (-1763.3,-1715.2) and y (356.3), indicating the location where Team2 is most likely waiting.
 
 This code can be adapted to analyze different games, players, teams, or boundary conditions as needed.
 
