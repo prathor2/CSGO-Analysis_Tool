@@ -13,7 +13,7 @@ Determines whether each row (representing a player's game state per frame) falls
 Extracts the weapon classes from the inventory column.
 
 ## Design Considerations
-I aimed to design a solution with optimal runtime efficiency and minimal dependencies on non-standard Python libraries. We used pandas for data manipulation, seaborn and matplotlib for data visualization, and shapely for geometric operations.
+I aimed to design a solution with optimal runtime efficiency and minimal dependencies on non-standard Python libraries. We used pandas and numpy for data manipulation, seaborn and matplotlib for data visualization, and shapely for geometric operations.
 
 ## Methodology
 I used the game data, including player positions, weapon inventory, and other state data, to gain insights into players' strategies. Using polygon-based geometric analysis, I determined whether a player's position is within a specified boundary. Then I analyzed the strategy of the opponent team based on their movement patterns and weapon choices.
