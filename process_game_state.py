@@ -15,6 +15,7 @@ class ProcessGameState:
         self.filter_rows_in_boundary()
         self.extract_weapon_classes()
 
+
     def filter_rows_in_boundary(self):
         """
         Assign True or False to each row depending on whether the point is within the boundary and Z-Axis Bounds
@@ -24,6 +25,7 @@ class ProcessGameState:
             np.array([self.polygon.contains(Point(point)) for point in xy_coords]),
             np.logical_and(self.data['z'] >= 285, self.data['z'] <= 421) 
         )
+    
     def extract_weapon_classes(self): 
         """
         Extracts weapon classes from the inventory column and adds it as a new column
@@ -64,13 +66,26 @@ class ProcessGameState:
         :param min_weapons: The minimum number of specified weapon types
         :param weapon_types: The types of weapons to consider
         """
-        team_data = self.data[(self.data['team'] == team) & (self.data['side'] == side)]
-        team_data = team_data.assign(weapon_count=team_data['weapon_classes'].apply(lambda x: sum([weapon in x for weapon in weapon_types])))
-        filtered_data = team_data[team_data['weapon_count'] >= min_weapons]
+        try:
+            team_data = self.data[(self.data['team'] == team) & (self.data['side'] == side)]
+            team_data = team_data.assign(weapon_count=team_data['weapon_classes'].apply(lambda x: sum([weapon in x for weapon in weapon_types])))
+            filtered_data = team_data[team_data['weapon_count'] >= min_weapons]
+            
+            while filtered_data.empty and min_weapons > 0:
+                min_weapons -= 1
+                filtered_data = team_data[team_data['weapon_count'] >= min_weapons]
+        except KeyError as e:
+            return f"Error: {e} not found in data"
+    
+        except Exception as e:
+            return f"Unexpected error: {e}"
+      
         if filtered_data.empty:
             return "No data available for the given conditions"
-
+    
         return filtered_data['seconds'].mean()
+    
+      
 
 
     def heatmap_coordinates(self, team, side):
@@ -86,3 +101,4 @@ class ProcessGameState:
         bins = 10  
         heatmap_data = team_data.groupby([pd.cut(team_data["x"], bins), pd.cut(team_data["y"], bins)]).size().unstack()
         return heatmap_data
+  
