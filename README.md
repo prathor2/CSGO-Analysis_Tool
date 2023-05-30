@@ -10,7 +10,7 @@ Our objective is to provide actionable insights to our CounterStrike coaching st
 
 Handles file ingestion and performs Extract, Transform, Load (ETL) operations on the data.
 Determines whether each row (representing a player's game state per frame) falls within a provided boundary.
-Extracts the weapon classes from the inventory JSON column.
+Extracts the weapon classes from the inventory column.
 Design Considerations
 I aimed to design a solution with optimal runtime efficiency and minimal dependencies on non-standard Python libraries. We used pandas for data manipulation, seaborn and matplotlib for data visualization, and shapely for geometric operations.
 
