@@ -15,7 +15,7 @@ Design Considerations
 I aimed to design a solution with optimal runtime efficiency and minimal dependencies on non-standard Python libraries. We used pandas for data manipulation, seaborn and matplotlib for data visualization, and shapely for geometric operations.
 
 ## Methodology
-I used the game data, including player positions, weapon inventory, and other state data, to gain insights into players' strategies. Using polygon-based geometric analysis, I determined whether a player's position is within a specified boundary. We then analyzed the strategy of the opponent team based on their movement patterns and weapon choices.
+I used the game data, including player positions, weapon inventory, and other state data, to gain insights into players' strategies. Using polygon-based geometric analysis, I determined whether a player's position is within a specified boundary. Then I analyzed the strategy of the opponent team based on their movement patterns and weapon choices.
 
 # Usage and Results
 To use this solution:
